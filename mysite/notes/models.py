@@ -16,7 +16,7 @@ class User(models.Model):
     user_carrer = models.CharField(max_length=80)
     user_graduated = models.DateField()
     # user_password = models.
-    user_status = models.CharField(max_lenght=20,choices=ESTADO_CHOICES,deault=ACTIVO)
+    user_status = models.CharField(max_length=20,choices=ESTADO_CHOICES,default=ACTIVO)
     created_at = models.DateTimeField(auto_now_add=True)
     
     
@@ -33,10 +33,11 @@ class Activities(models.Model):
     
     
     act_name = models.CharField(max_length=200)
-    act_date_delivery = models.DateTime()
+    act_date_delivery = models.DateTimeField()
     act_score = models.IntegerField(default=00)
-    act_priority = models.CharField(max_lenght=20,choices=PRIORITY_CHOICES,default=MEDIA)
+    act_priority = models.CharField(max_length=20,choices=PRIORITY_CHOICES,default=MEDIA)
     act_description = models.TextField(max_length=255)
+    act_user = models.ForeignKey(User,on_delete=models.CASCADE,default=1)
     
     
     
