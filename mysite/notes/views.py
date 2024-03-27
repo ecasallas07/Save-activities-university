@@ -1,15 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-# from .mod
+from django.template import loader
+from .models import User, Activities    
 
 
+def home(request):
+    return render(request,'home/index.html')
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the notes index.")
-    
+
 def login(request):
-    return HttpResponse("Login")
-
+    return render(request,'home/index.html') 
+ 
 def register(request):
     return HttpResponse("register")
 
