@@ -15,7 +15,7 @@ class User(models.Model):
     user_university = models.CharField(max_length=70)
     user_carrer = models.CharField(max_length=80)
     user_graduated = models.DateField()
-    # user_password = models.
+    user_password = models.
     user_status = models.CharField(max_length=20,choices=ESTADO_CHOICES,default=ACTIVO)
     created_at = models.DateTimeField(auto_now_add=True)
     
