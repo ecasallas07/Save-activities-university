@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
-from .models import User, Activities    
+from .models import UserTable, Activities    
 from django.contrib import messages
+from django.db import IntegrityError
+# from django.contrib.auth.forms import UserCreationForm --> create form for defaul
 
 def home(request):
     return render(request,'home/index.html')
@@ -22,10 +24,15 @@ def register(request):
        confirm_password = request.POST['confirm_password'] 
 
     if password == confirm_password:
-       user = User(user_name=username,user_email=email,user_university=university,user_carrer=carrer,user_graduated=graduation,password=password)
-       user.save()
-       messages.success(request,'Registro exitoso. Ahora puedes iniciar sesión.') 
-       return redirect('validate') 
+       try:
+           user = UserTable(user_name=username,user_email=email,user_university=university,user_carrer=carrer,user_graduated=graduation,user_password=password)
+           user.save()
+           print('success') 
+           messages.success(request,'Registro exitoso. Ahora puedes iniciar sesión.') 
+           return render(request,'login/index.html') 
+       except IntegrityError as e:
+           error_message= str(e) 
+           messages.error(request,f'Error de integridad {error_message}') 
     else:
         messages.error(request,'Las contraseñas no coinciden.')
 

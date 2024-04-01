@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class User(models.Model):
+class UserTable(models.Model):
     ACTIVO = 'activo'
     DESACTIVADO = 'desactivado'
     
@@ -15,7 +15,7 @@ class User(models.Model):
     user_university = models.CharField(max_length=70)
     user_carrer = models.CharField(max_length=80)
     user_graduated = models.DateField()
-    user_password = models.
+    user_password = models.CharField(max_length=20)
     user_status = models.CharField(max_length=20,choices=ESTADO_CHOICES,default=ACTIVO)
     created_at = models.DateTimeField(auto_now_add=True)
     
@@ -37,7 +37,7 @@ class Activities(models.Model):
     act_score = models.IntegerField(default=00)
     act_priority = models.CharField(max_length=20,choices=PRIORITY_CHOICES,default=MEDIA)
     act_description = models.TextField(max_length=255)
-    act_user = models.ForeignKey(User,on_delete=models.CASCADE,default=1)
+    act_user = models.ForeignKey(UserTable,on_delete=models.CASCADE,default=1)
     
     
     
