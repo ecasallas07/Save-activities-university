@@ -4,6 +4,8 @@ from django.template import loader
 from .models import UserTable, Activities    
 from django.contrib import messages
 from django.db import IntegrityError
+from django.contrib.auth import authenticate, login
+from django.contrib.sessions.models import Session
 # from django.contrib.auth.forms import UserCreationForm --> create form for defaul
 
 def home(request):
@@ -36,7 +38,24 @@ def register(request):
     else:
         messages.error(request,'Las contraseñas no coinciden.')
 
+def login(request):
+    if request.method == POST:
+       username = request.POST['email']
+       password = request.POST['password']
+       print(username)
+       user = UserTable.objects.get(user_email= username,user_password=password)
+       print(type(user))
 
+
+       if user is not None:
+          request.session['user_id'] = user.id
+          request.session['username'] = username
+          request.session.save()
+          print(session['user_id'])
+          return render(request,'home_user/index.html',{'session_user':session['user_id']})
+       else:
+          pass
+            # return render(request,'login/index.html',{'message_error':'The password or username is incorrect'})
 
 
 
