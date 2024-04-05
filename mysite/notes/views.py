@@ -8,6 +8,9 @@ from django.contrib.auth import authenticate, login
 from django.contrib.sessions.models import Session
 # from django.contrib.auth.forms import UserCreationForm --> create form for defaul
 
+def test(request):
+    return render(request,'home_user/index.html')
+
 def home(request):
     return render(request,'home/index.html')
 
@@ -39,7 +42,7 @@ def register(request):
         messages.error(request,'Las contraseñas no coinciden.')
 
 def login(request):
-    if request.method == POST:
+    if request.method == 'POST':
        username = request.POST['email']
        password = request.POST['password']
        print(username)
@@ -51,11 +54,9 @@ def login(request):
           request.session['user_id'] = user.id
           request.session['username'] = username
           request.session.save()
-          print(session['user_id'])
-          return render(request,'home_user/index.html',{'session_user':session['user_id']})
+          return render(request,'home_user/index.html',{'session_user':request.session['user_id']})
        else:
-          pass
-            # return render(request,'login/index.html',{'message_error':'The password or username is incorrect'})
-
-
+          HttpResponse("No funciona")
+    else:
+        HttpResponse("No funciona, metodo") 
 
