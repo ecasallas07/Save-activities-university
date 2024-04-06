@@ -30,6 +30,48 @@ function test() {
         });
     });
 }
+ const element_one =  document.getElementById('attemps_one')
+ const element_two =  document.getElementById('attemps_two')
+ const element_three = document.getElementById('attemps_three')
+function view(id)
+{
+ const element_one =  document.getElementById('attemps_one')
+ const element_two =  document.getElementById('attemps_two')
+ const element_three = document.getElementById('attemps_three')
+
+  if(id == "attemps_one"){
+    if(element_two == null){
+      const element_two = document.getElementById('active_view')
+      element_two.id = 'attemps_two'
+    }else if(element_three == null){
+      const element_three = document.getElementById('active_view')
+      element_three.id = 'attemps_three'
+    }
+    element_one.id = 'active_view'
+
+  }else if(id =="attemps_two"){
+    if(element_three == null)
+    {
+      const element_three =  document.getElementById('active_view')
+      element_three.id = 'attemps_three'
+    }else if(element_one == null){
+      const element_one = document.getElementById('active_view')
+      element_one.id= 'attemps_one'
+    }
+    element_two.id = 'active_view'
+   
+  }else if(id == "attemps_three")
+  {
+    if(element_one == null){
+      const element_one = document.getElementById('active_view')
+      element_one.id = 'attemps_one'
+    }else if(element_two== null){
+      const element_two =  document.getElementById('active_view')
+      element_two.id = 'attemps_two'
+    }
+    element_three.id ='active_view'
+  }
+}
 
 $(document).ready(function() {
     test();
@@ -44,7 +86,7 @@ $(document).ready(function() {
     // Add active class to current page link
     var path = window.location.pathname.split("/").pop();
     if (path === '') {
-        path = 'index.html';
+        path = 'itdex.html';
     }
     var target = $('#navbarSupportedContent ul li a[href="' + path + '"]');
     target.parent().addClass('active');

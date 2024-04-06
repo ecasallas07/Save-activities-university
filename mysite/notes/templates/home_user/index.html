@@ -21,27 +21,38 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Address Book</a>
+                  <a class="nav-link" href="javascript:void(1);" onclick="view('attemps_one')"><i class="far fa-address-book"></i>Activities</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Components</a>
+                    <a class="nav-link" href="javascript:void(0);" onclick="view('attemps_two')"><i class="far fa-clone"></i>Notes</a>
                 </li>
+                <!-- Calendar in revistion for implementation -->
+                <!-- <li class="nav-item"> -->
+                <!--     <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Calendar</a> -->
+                <!-- </li> -->
+                <!-- <li class="nav-item"> -->
+                <!--     <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a> -->
+                <!-- </li> -->
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Calendar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>
+                    <a class="nav-link" href="javascript:void(0);" onclick="view('attemps_three')"><i class="far fa-copy"></i>Documents Study</a>
                 </li>
             </ul>
         </div>
     </nav>
+
+    <div id="attemps_one">
+      <h2>Hello World</h2>
+    </div>
+    <div id="attemps_two">
+      <h2>Another Element</h2>
+    </div> 
+    <div id="attemps_three">
+      <h2>Thrid Element</h2>
+    </div> 
+
+
+
   <script src="{% static 'notes/home-user.js' %}"></script>
  </body>
 </html>

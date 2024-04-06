@@ -166,3 +166,17 @@ i {
 		left: -25px;
 	}
 }
+
+#attemps_one {
+  display:none;
+
+}
+#attemps_two {
+  display:none;
+}
+#attemps_three {
+  display:none;
+}
+#active_view{
+  display: block;
+}
