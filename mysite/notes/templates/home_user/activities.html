@@ -1,0 +1,49 @@
+{% extends 'base/head.html' %}
+
+    {% block content %}
+    <div id="attemps_one">
+      <section class="container">
+        <div class="heading">
+          <img
+            class="heading__img"
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/756881/laptop.svg"
+          />
+          <h1 class="heading__title">Create Activitie</h1>
+        </div>
+        <form class="form" action="" method="">
+          <div>
+            <label class="form__label" for="todo">~ Today I need to ~</label>
+            <input type="hidden" id="itemIdInput" name="itemId" />
+            <input
+              class="form__input"
+              type="text"
+              id="todo"
+              name="to-do"
+              size="30"
+              required
+            />
+            <button class="button"><span>Submit</span></button>
+          </div>
+        </form>
+        <div>
+          <ul class="toDoList"></ul>
+        </div>
+      </section>
+
+      <div class="list-box">
+        <div class="list-box__title">
+          <div class="list-box__title__inner">
+            <div class="list-box__icon">
+              <span class="fa fa-angry has-color-red"></span>
+            </div>
+            <h3>Angry</h3>
+          </div>
+        </div>
+        <ul class="list-box__list">
+          <li>Frown</li>
+          <li>Red face</li>
+          <li>Smoke from nose (optional)</li>
+        </ul>
+      </div>
+    </div>
+    {% endblock %}

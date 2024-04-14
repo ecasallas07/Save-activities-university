@@ -54,9 +54,20 @@ def login(request):
           request.session['user_id'] = user.id
           request.session['username'] = username
           request.session.save()
-          return render(request,'home_user/index.html',{'session_user':request.session['user_id']})
+          return render(request,'home_user/home.html',{'session_user':request.session['user_id']})
        else:
           HttpResponse("No funciona")
     else:
         HttpResponse("No funciona, metodo") 
 
+def home_user(request):
+    return render(request,'home_user/home.html')
+
+def activities(request):
+    return render(request,'home_user/activities.html')
+
+def documents(request):
+    return render(request,'home_user/documents.html')
+
+def notes(request):
+    return render(request,'home_user/notes.html')
