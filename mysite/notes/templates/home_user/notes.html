@@ -1,9 +1,64 @@
-{% extends 'base/head.html' %}
+{% extends 'base/head.html' %} {% load static %}{% block link %}
+<link rel="stylesheet" href="{% static 'notes/notes.css' %}" />
+<link rel="stylesheet" href="{% static 'notes/activities.css' %}" />
+{% endblock %} {% block content %}
+<div class="notes-button">
+    <button class="btn_notes"><a href="#m1-o" id="modal-closed" class="link-notes">Saved notes</a></button>
+</div>
+<div class="container_notes">
+  <h1>Notes Learn</h1>
+  <div class="sticky-notes">
+    <div class="add-note">+</div>
+    <!-- Add more sticky notes here -->
+  </div>
+</div>
+<div class="modal-container" id="m1-o" >
+    <div class="modal">
+      <h1 class="modal__title">Modal 1 Title</h1>
+      <p class="modal__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis ex dicta maiores libero minus obcaecati iste optio, eius labore repellendus.</p>
+      <div>
+        <div class="card-container-1">
+          <div class="photo-container">
+            <div class="date">
+              <div class="day">16</div>
+              <div class="month">MAY</div>
+            </div>
+            <div class="image"></div>
+          </div>
+          <div class="info-container">
+            <div class="event-name">
+              Mason Day
+            </div>
+            <div class="event-location">
+              See headlining artist: Soulja Boy
+            </div>
+          </div>
+        </div>
+        <div class="card-container-1">
+          <div class="photo-container">
+            <div class="date">
+              <div class="day">22</div>
+              <div class="month">MAY</div>
+            </div>
+            <div class="image"></div>
+          </div>
+          <div class="info-container">
+            <div class="event-name">
+              De-Stress Fest
+            </div>
+            <div class="event-location">
+              De-stress before finals with puppies!
+            </div>
+          </div>
+        </div>
+      </div>    
+      <button class="modal__btn">Button &rarr;</button>
+      <a href="#m1-c" class="link-2"></a>
+    </div>
+  </div>
 
-{% block content %}
+{% endblock %}
 
-
-
-
-
+{% block script %}
+<script src="{% static 'notes/notes.js' %}"></script> 
 {% endblock %}
