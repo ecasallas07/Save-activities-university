@@ -1,7 +1,8 @@
-{% extends 'base/head.html' %}
-
-    {% block content %}
-    <div id="attemps_one">
+{% extends 'base/head.html' %} {% load static %} {% block link %}
+<link rel="stylesheet" href="{% static 'notes/activities.css' %}" />
+{% endblock %} {% block content %}
+<div id="attemps_one">
+    <div class="el-totall">
       <section class="container">
         <div class="heading">
           <img
@@ -12,14 +13,39 @@
         </div>
         <form class="form" action="" method="">
           <div>
-            <label class="form__label" for="todo">~ Today I need to ~</label>
+            <label class="form__label" for="todo"></label>
             <input type="hidden" id="itemIdInput" name="itemId" />
+            <select class="form__input">
+              <option>categoria</option>
+            </select>
             <input
               class="form__input"
               type="text"
               id="todo"
               name="to-do"
               size="30"
+              placeholder="fecha"
+              required
+            />
+            <input
+              class="form__input"
+              type="text"
+              id="todo"
+              name="to-do"
+              size="30"
+              placeholder="score"
+              required
+            />
+            <select class="form__input">
+              <option>prioridad</option>
+            </select>
+            <input
+              class="form__input"
+              type="text"
+              id="todo"
+              name="to-do"
+              size="30"
+              placeholder="descripcion"
               required
             />
             <button class="button"><span>Submit</span></button>
@@ -31,19 +57,65 @@
       </section>
 
       <div class="list-box">
-        <div class="list-box__title">
-          <div class="list-box__title__inner">
-            <div class="list-box__icon">
-              <span class="fa fa-angry has-color-red"></span>
+        <a href="#m1-o" id="modal-closed">
+          <div class="list-box__title">
+            <div class="list-box__title__inner">
+              <div class="list-box__icon">
+                {% comment %} <img src="#" /> {% endcomment %}
+              </div>
             </div>
-            <h3>Angry</h3>
           </div>
-        </div>
-        <ul class="list-box__list">
-          <li>Frown</li>
-          <li>Red face</li>
-          <li>Smoke from nose (optional)</li>
-        </ul>
+          <ul class="list-box__list">
+            <li>Materias</li>
+          </ul>
+        </a>  
       </div>
     </div>
-    {% endblock %}
+
+    <div class="modal-container" id="m1-o" >
+      <div class="modal">
+        <h1 class="modal__title">Modal 1 Title</h1>
+        <p class="modal__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis ex dicta maiores libero minus obcaecati iste optio, eius labore repellendus.</p>
+        <button class="modal__btn">Button &rarr;</button>
+        <a href="#m1-c" class="link-2"></a>
+      </div>
+    </div>
+
+    <div>
+      <div class="card-container-1">
+        <div class="photo-container">
+          <div class="date">
+            <div class="day">16</div>
+            <div class="month">MAY</div>
+          </div>
+          <div class="image"></div>
+        </div>
+        <div class="info-container">
+          <div class="event-name">
+            Mason Day
+          </div>
+          <div class="event-location">
+            See headlining artist: Soulja Boy
+          </div>
+        </div>
+      </div>
+      <div class="card-container-1">
+        <div class="photo-container">
+          <div class="date">
+            <div class="day">22</div>
+            <div class="month">MAY</div>
+          </div>
+          <div class="image"></div>
+        </div>
+        <div class="info-container">
+          <div class="event-name">
+            De-Stress Fest
+          </div>
+          <div class="event-location">
+            De-stress before finals with puppies!
+          </div>
+        </div>
+      </div>
+    </div>    
+</div>
+{% endblock %}
