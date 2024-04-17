@@ -54,11 +54,11 @@ i {
 	position: relative;
 }
 
-#navbarSupportedContent>ul>li.active>a {
+/* #navbarSupportedContent>ul>li.active>a {
 	color: #d9534f;
 	background-color: transparent;
 	transition: all 0.7s;
-}
+} */
 
 #navbarSupportedContent a:not(:only-child):after {
 	content: "\f105";
@@ -74,9 +74,9 @@ i {
 	transition: 0.5s;
 }
 
-#navbarSupportedContent .active>a:not(:only-child):after {
+/* #navbarSupportedContent .active>a:not(:only-child):after {
 	transform: rotate(90deg);
-}
+} */
 
 .hori-selector {
 	display: inline-block;
@@ -302,12 +302,12 @@ i {
 	border: 2px solid hsl(198, 1%, 29%);
 }
 
-.button:active,
+/* .button:active,
 .button:focus {
 	transform: translateY(4px);
 	padding-bottom: 0px;
 	outline: 0;
-}
+} */
 
 .toDoList {
 	text-align: left;
@@ -620,6 +620,11 @@ p {
 
 #home{
 	display: block;
+}
+
+li #click-e{
+	color :whitesmoke !important;
+	border-bottom: #1B1D22 solid 2px;
 }
 
 #home_desactive {
