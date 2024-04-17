@@ -3,7 +3,7 @@
 }
 
 .container {
-    margin: 20px 50px;
+    margin: 100px 50px;
 }
 
 .list-box {
@@ -77,7 +77,7 @@
     height: 100%;
   
     /* --m-background is set as inline style */
-    background: var(--m-background);
+    background: grey;
   }
   
   /* using :target */

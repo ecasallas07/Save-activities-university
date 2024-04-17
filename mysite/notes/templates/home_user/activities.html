@@ -1,6 +1,10 @@
-{% extends 'base/head.html' %} {% load static %} {% block link %}
+{% extends 'base/head.html' %} 
+{% load static %} 
+{% block link %}
 <link rel="stylesheet" href="{% static 'notes/activities.css' %}" />
-{% endblock %} {% block content %}
+{% endblock %}
+
+{% block content %}
 <div id="attemps_one">
     <div class="el-totall">
       <section class="container">
@@ -16,15 +20,14 @@
             <label class="form__label" for="todo"></label>
             <input type="hidden" id="itemIdInput" name="itemId" />
             <select class="form__input">
-              <option>categoria</option>
+              <option>Category</option>
             </select>
             <input
               class="form__input"
-              type="text"
+              type="date"
               id="todo"
               name="to-do"
               size="30"
-              placeholder="fecha"
               required
             />
             <input
@@ -33,11 +36,11 @@
               id="todo"
               name="to-do"
               size="30"
-              placeholder="score"
+              placeholder="Score"
               required
             />
             <select class="form__input">
-              <option>prioridad</option>
+              <option select>Priority</option>
             </select>
             <input
               class="form__input"
@@ -45,7 +48,7 @@
               id="todo"
               name="to-do"
               size="30"
-              placeholder="descripcion"
+              placeholder="Description"
               required
             />
             <button class="button"><span>Submit</span></button>
@@ -76,46 +79,48 @@
       <div class="modal">
         <h1 class="modal__title">Modal 1 Title</h1>
         <p class="modal__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis ex dicta maiores libero minus obcaecati iste optio, eius labore repellendus.</p>
+        <div>
+          <div class="card-container-1">
+            <div class="photo-container">
+              <div class="date">
+                <div class="day">16</div>
+                <div class="month">MAY</div>
+              </div>
+              <div class="image"></div>
+            </div>
+            <div class="info-container">
+              <div class="event-name">
+                Mason Day
+              </div>
+              <div class="event-location">
+                See headlining artist: Soulja Boy
+              </div>
+            </div>
+          </div>
+          <div class="card-container-1">
+            <div class="photo-container">
+              <div class="date">
+                <div class="day">22</div>
+                <div class="month">MAY</div>
+              </div>
+              <div class="image"></div>
+            </div>
+            <div class="info-container">
+              <div class="event-name">
+                De-Stress Fest
+              </div>
+              <div class="event-location">
+                De-stress before finals with puppies!
+              </div>
+            </div>
+          </div>
+        </div>    
         <button class="modal__btn">Button &rarr;</button>
         <a href="#m1-c" class="link-2"></a>
       </div>
     </div>
-
-    <div>
-      <div class="card-container-1">
-        <div class="photo-container">
-          <div class="date">
-            <div class="day">16</div>
-            <div class="month">MAY</div>
-          </div>
-          <div class="image"></div>
-        </div>
-        <div class="info-container">
-          <div class="event-name">
-            Mason Day
-          </div>
-          <div class="event-location">
-            See headlining artist: Soulja Boy
-          </div>
-        </div>
-      </div>
-      <div class="card-container-1">
-        <div class="photo-container">
-          <div class="date">
-            <div class="day">22</div>
-            <div class="month">MAY</div>
-          </div>
-          <div class="image"></div>
-        </div>
-        <div class="info-container">
-          <div class="event-name">
-            De-Stress Fest
-          </div>
-          <div class="event-location">
-            De-stress before finals with puppies!
-          </div>
-        </div>
-      </div>
-    </div>    
 </div>
+{% endblock %}
+{% block script %}
+<script src="{% static 'notes/home-user.js' %}"></script> 
 {% endblock %}

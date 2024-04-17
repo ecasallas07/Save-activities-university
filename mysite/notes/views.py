@@ -54,7 +54,7 @@ def login(request):
           request.session['user_id'] = user.id
           request.session['username'] = username
           request.session.save()
-          return render(request,'home_user/home.html',{'session_user':request.session['user_id']})
+          return render(request,'home_user/activities.html',{'session_user':request.session['user_id']})
        else:
           HttpResponse("No funciona")
     else:

@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'saveUniversity',
         'USER': 'root',
-        'PASSWORD':'' ,
+        'PASSWORD':'4577' ,
         'HOST':'localhost'     
     }
 }
