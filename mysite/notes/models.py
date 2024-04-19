@@ -39,8 +39,9 @@ class Activities(models.Model):
     act_description = models.TextField(max_length=255)
     act_user = models.ForeignKey(UserTable,on_delete=models.CASCADE,default=1)
     
+# class Documents(models.Model):
     
-    
-    
-    
+#     docu_title = models.CharField(max_length=255)
+#     docu_description = models.TextField(max_length=255)
+#     docu_
     

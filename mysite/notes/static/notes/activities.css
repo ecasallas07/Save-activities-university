@@ -13,6 +13,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-shadow: 4px 3px 7px 2px #00000040;
 }
 
 .photo-container {
@@ -77,7 +78,7 @@
     height: 100%;
   
     /* --m-background is set as inline style */
-    background: grey;
+    background: rgb(219, 217, 217);
   }
   
   /* using :target */
@@ -207,3 +208,59 @@
     color: hsla(0, 0%, 1000%, .6);
     font-size: 1.6rem;
   }
+
+.list-box__list{
+  font-family: system-ui;
+}
+
+.btn_notes {
+  --btn-color: rgb(124 45 18);
+  --btn-bg: rgb(252 211 77);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: whitesmoke;
+  color: #d9534f;
+  padding: 14px 22px;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: system-ui;
+  border: 2px solid #d9534f;
+  transition: 100ms ease;
+  box-shadow: 5px 5px 0 0 #d9534f;
+  margin: 25px;
+  width: 230px;
+  height: 70px;
+}
+
+.btn_notes:hover {
+  box-shadow: 2px 2px 0 0 #d9534f;
+}
+
+.btn_notes:focus-visible {
+  outline: 0;
+  --btn-color: #002cc8;
+}
+
+.btn_notes:focus-visible::after {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 12px);
+  transform: translateX(-50%);
+  content: "\21E7";
+  animation: float .5s ease-in-out infinite;
+}
+
+.link-notes{
+  text-decoration: none;
+  color:#d9534f;
+}
+
+/* .content_activities{
+  display
+} */

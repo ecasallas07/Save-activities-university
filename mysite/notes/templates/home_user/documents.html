@@ -1,10 +1,99 @@
-{% extends 'base/head.html' %}
+{% extends 'base/head.html' %} {% load static %} {% block link %}
+<link rel="stylesheet" href="{% static 'notes/documents.css' %}" />
+{% endblock %} {% block content %}
 
-{% block content %}
+<div class="content_docu">
+  <div class="form_docu">
+    <div class="card">
+      <h2>Login Form</h2>
 
+      <!-- SE CONNECTER / S'INSCRIRE -->
+      <div class="login_register">
+        <a
+          href="
+    https://codepen.io/pen?template=gOEqMVq
+    "
+          class="login"
+          target="blank"
+          >Login</a
+        >
+        <a
+          href="
+    https://codepen.io/pen?template=VwRgKYB
+    "
+          class="register"
+          target="blank"
+          >Signup</a
+        >
+      </div>
 
+      <!-- FORMULAIRE -->
+      <form class="form">
+        <input type="email" placeholder="Email Adress" class="email" />
+        <input type="password" placeholder="password" class="pass" />
+      </form>
 
+      <!-- MOT DE PASSE OUBLIE ? -->
+      <a href="#" class="fp">Forgot password?</a>
 
+      <!-- BOUTTON LOGIN -->
+      <button type="button" class="login_btn">Login</button>
 
+      <!-- PIED DE LA CARD -->
+      <div class="footer_card">
+        <p>Not a member?</p>
+        <a href="#">Singup now</a>
+      </div>
+    </div>
+  </div>
+  <div class="container_docu">
+    <h2>Documents List</h2>
+    <ul class="file-list">
+      <li>
+        <a href="#" target="_blank">
+          <span class="thumb-nail"
+            ><img
+              src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/12/attachment_83090027.jpg?auto=format&q=60&fit=max&w=930"
+          /></span>
+          <h3>Filename will come here</h3>
+          <i></i>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" target="_blank">
+          <span class="thumb-nail"
+            ><img
+              src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/12/attachment_83090027.jpg?auto=format&q=60&fit=max&w=930"
+          /></span>
+          <h3>Filename will come here</h3>
+          <i></i>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" target="_blank">
+          <span class="thumb-nail"
+            ><img
+              src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/12/attachment_83090027.jpg?auto=format&q=60&fit=max&w=930"
+          /></span>
+          <h3>Filename will come here</h3>
+          <i></i>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" target="_blank">
+          <span class="thumb-nail"
+            ><img
+              src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/12/attachment_83090027.jpg?auto=format&q=60&fit=max&w=930"
+          /></span>
+          <h3>Filename will come here</h3>
+          <i></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
 
 {% endblock %}
