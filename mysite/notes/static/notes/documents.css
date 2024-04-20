@@ -131,6 +131,15 @@
   font-family: "Roboto Mono", sans-serif;
   box-shadow: 1px 5px 9px rgba(211, 211, 211, .7);
 }
+.form textarea{
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #DDDDDD;
+  color: #A0A6A3;
+  font-family: "Roboto Mono", sans-serif;
+  box-shadow: 1px 5px 9px rgba(211, 211, 211, .7);
+  height: 40px;
+}
 
 .form input.email{
   margin-bottom: 15px;

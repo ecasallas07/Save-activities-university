@@ -5,45 +5,17 @@
 <div class="content_docu">
   <div class="form_docu">
     <div class="card">
-      <h2>Login Form</h2>
-
-      <!-- SE CONNECTER / S'INSCRIRE -->
-      <div class="login_register">
-        <a
-          href="
-    https://codepen.io/pen?template=gOEqMVq
-    "
-          class="login"
-          target="blank"
-          >Login</a
-        >
-        <a
-          href="
-    https://codepen.io/pen?template=VwRgKYB
-    "
-          class="register"
-          target="blank"
-          >Signup</a
-        >
-      </div>
-
+      <h2>Save Documents</h2>
       <!-- FORMULAIRE -->
-      <form class="form">
-        <input type="email" placeholder="Email Adress" class="email" />
-        <input type="password" placeholder="password" class="pass" />
+      <form method="POST" action="{% url 'notes:documents' %}" class="form">
+        {% csrf_token %}
+        <p>Filename:</p>{{ form.docu_title }}
+        <p>Description: </p> {{ form.docu_description }}
+        <p>Link:</p>{{ form.docu_link }}
+        <p>File:</p> {{ form.docu_file }}
+        <p>Image:</p> {{ form.docu_image }}
+        <button type="button" class="login_btn">Save</button>
       </form>
-
-      <!-- MOT DE PASSE OUBLIE ? -->
-      <a href="#" class="fp">Forgot password?</a>
-
-      <!-- BOUTTON LOGIN -->
-      <button type="button" class="login_btn">Login</button>
-
-      <!-- PIED DE LA CARD -->
-      <div class="footer_card">
-        <p>Not a member?</p>
-        <a href="#">Singup now</a>
-      </div>
     </div>
   </div>
   <div class="container_docu">

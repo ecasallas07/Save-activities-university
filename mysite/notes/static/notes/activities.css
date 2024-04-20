@@ -26,6 +26,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 120px;
 }
 
 .card-container-1 {
@@ -48,6 +49,16 @@
 .event-name {
     font-weight: bold;
     padding-bottom: 5px;
+    display: flex;
+    justify-content:space-between;
+}
+.c-t-basic{
+  font-weight: bold;
+  color: #d9534f;
+}
+
+.el-score{
+  font-weight:bold ;
 }
 
 .event-location {
@@ -60,6 +71,7 @@
 
 .month {
     font-weight: 600;
+    width: 130px;
 }
 
 

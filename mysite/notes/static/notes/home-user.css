@@ -263,7 +263,6 @@ i {
 	border-bottom-left-radius: 3px 15px;
 	border: solid 3px transparent;
 	border-bottom: dashed 3px #d9534f;
-	font-family: 'Gochi Hand', cursive;
 	font-size: 1rem;
 	color: hsla(260, 2%, 25%, 0.7);
 	width: 70%;
@@ -286,7 +285,6 @@ i {
 	border: none;
 	transform: rotate(4deg);
 	transform-origin: center;
-	font-family: 'Gochi Hand', cursive;
 	text-decoration: none;
 	padding-bottom: 3px;
 	border-radius: 5px;
