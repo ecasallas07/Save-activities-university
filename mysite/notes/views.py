@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
-from .models import UserTable, Activities    
-from django.contrib import messages
+from .models import UserTable, Activities , Documents  
+# from django.contrib.message import message
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login
 from django.contrib.sessions.models import Session
+from notes.forms import DocumentsForm
 # from django.contrib.auth.forms import UserCreationForm --> create form for defaul
 
 def test(request):
@@ -19,6 +20,7 @@ def validate(request):
     return render(request,'login/index.html') 
  
 def register(request):
+    # this form is whean is not used forms.py of user
     if request.method == 'POST':
        username= request.POST['username'] 
        email = request.POST['email']   
@@ -47,14 +49,12 @@ def login(request):
        password = request.POST['password']
        print(username)
        user = UserTable.objects.get(user_email= username,user_password=password)
-       print(type(user))
-
 
        if user is not None:
           request.session['user_id'] = user.id
           request.session['username'] = username
           request.session.save()
-          return render(request,'home_user/activities.html',{'session_user':request.session['user_id']})
+          return render(request,'home_user/activities.html',{ 'session_id':request.session.get('user_id', 'Invitado') })
        else:
           HttpResponse("No funciona")
     else:
@@ -64,10 +64,37 @@ def home_user(request):
     return render(request,'home_user/home.html')
 
 def activities(request):
-    return render(request,'home_user/activities.html')
+    if request.method == 'POST':
+        name =request.POST['act_name']
+        date = request.POST['act_date_delivery']
+        score = request.POST['act_score']
+        priority = request.POST['act_priority']
+        user_id = request.session['user_id']
+        category = request.POST['act_category']
+        description = request.POST['act_description']
+    
+        try:
+            activity = Activities(act_name=name,act_date_delivery=date,act_score=score,act_priority=priority,act_user_id=user_id,act_category=category,act_description=description)
+            activity.save()
+            messages.success(request,'Registro exitoso.') 
+            return render(request,'home_user/activities.html') 
+        except IntegrityError as e:
+            error_message= str(e) 
+            messages.error(request,f'Error de integridad {error_message}')  
+    else:
+        #filter activities for user_id of session with filter
+        activities=Activities.objects.filter(act_user_id=request.session.get('user_id'))           
+        return render(request,'home_user/activities.html',{'act':activities})
 
 def documents(request):
-    return render(request,'home_user/documents.html')
+    if request.method == 'POST':
+        form_docu = DocumentsForm(request.POST,request.FILES)
+        if form_docu.is_valid():
+            form_docu.save()
+            return redirect('home_user/documents')
+    else:        
+        form = DocumentsForm()
+        return render(request,'home_user/documents.html',{'form':form})
 
 def notes(request):
     return render(request,'home_user/notes.html')

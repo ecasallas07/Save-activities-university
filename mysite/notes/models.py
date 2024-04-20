@@ -37,11 +37,16 @@ class Activities(models.Model):
     act_score = models.IntegerField(default=00)
     act_priority = models.CharField(max_length=20,choices=PRIORITY_CHOICES,default=MEDIA)
     act_description = models.TextField(max_length=255)
+    act_category = models.CharField(max_length=255, default='undefined')
     act_user = models.ForeignKey(UserTable,on_delete=models.CASCADE,default=1)
     
-# class Documents(models.Model):
+class Documents(models.Model):
     
-#     docu_title = models.CharField(max_length=255)
-#     docu_description = models.TextField(max_length=255)
-#     docu_
+    docu_title = models.CharField(max_length=255)
+    docu_description = models.TextField(max_length=255)
+    docu_link = models.TextField(max_length=255)
+    docu_file = models.FileField(upload_to='documents/')
+    docu_image = models.FileField(upload_to='images/')
+    create_at = models.DateTimeField(auto_now_add=True)
+    docu_user = models.ForeignKey(UserTable,on_delete=models.CASCADE,default=1)
     

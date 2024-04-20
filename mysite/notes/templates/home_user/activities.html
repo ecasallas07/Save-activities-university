@@ -14,19 +14,40 @@
             src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/756881/laptop.svg"
           />
           <h1 class="heading__title">Create Activitie</h1>
-        </div>
-        <form class="form" action="" method="">
+          {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+        </div>  
+
+        <form class="form" action="{% url 'notes:activities' %}" method="POST">
+          {% csrf_token %}
           <div>
             <label class="form__label" for="todo"></label>
-            <input type="hidden" id="itemIdInput" name="itemId" />
-            <select class="form__input">
-              <option>Category</option>
+            {% comment %} <input type="text" name="act_user_id" placeholder="naa"/> {% endcomment %}
+            <input
+              class="form__input"
+              type="dtext"
+              id="todo"
+              name="act_name"
+              placeholder="Name"
+              size="30"
+              required
+            />
+            <select class="form__input" name="act_category">
+              <option selected>Category</option>
+              <option value="Ciencias basicas">Ciencias basicas</option>
+              <option value="Proyecto">Proyecto</option>
+              <option value="Teorico-Practico">Teorico-Practico</option>
             </select>
             <input
               class="form__input"
               type="date"
               id="todo"
-              name="to-do"
+              name="act_date_delivery"
               size="30"
               required
             />
@@ -34,23 +55,25 @@
               class="form__input"
               type="text"
               id="todo"
-              name="to-do"
+              name="act_score"
               size="30"
               placeholder="Score"
               required
             />
-            <select class="form__input">
-              <option select>Priority</option>
+            <select class="form__input" name="act_priority">
+              <option selected>Priority</option>
+              <option value="Alta">Alta</option>
+              <option value="Media">Media</option>
+              <option value="Baja">Baja</option>
             </select>
-            <input
+            <textarea 
               class="form__input"
               type="text"
               id="todo"
-              name="to-do"
-              size="30"
-              placeholder="Description"
+              name="act_description"
               required
-            />
+            >
+            </textarea>
             <button class="button"><span>Submit</span></button>
           </div>
         </form>
@@ -64,7 +87,23 @@
           <div class="list-box">
             <a href="#m1-o" id="modal-closed">
               <div class="notes-button">
-                <button class="btn_notes"><a href="#m1-o" id="modal-closed" class="link-notes">Ciencias basicas</a></button>
+                <a href="#m1-o" id="modal-closed" class="link-notes"><button class="btn_notes">Ciencias basicas</button></a>
+              </div>
+              <ul class="list-box__list">
+                <li>Materias</li>
+              </div>
+              {% comment %} {% for el in act %}
+                <p>{{ el.act_name }}</p>
+              {% endfor %} {% endcomment %}
+              
+            <div>
+              </ul>
+            </a>  
+          </div>
+          <div class="list-box">
+            <a href="#m1-o" id="modal-closed">
+              <div class="notes-button">
+                <a href="#m2-o" id="modal-closed" class="link-notes"> <button class="btn_notes">Proyecto</button></a>
               </div>
               <ul class="list-box__list">
                 <li>Materias</li>
@@ -74,17 +113,7 @@
           <div class="list-box">
             <a href="#m1-o" id="modal-closed">
               <div class="notes-button">
-                <button class="btn_notes"><a href="#m2-o" id="modal-closed" class="link-notes">Proyecto</a></button>
-              </div>
-              <ul class="list-box__list">
-                <li>Materias</li>
-              </ul>
-            </a>  
-          </div>
-          <div class="list-box">
-            <a href="#m1-o" id="modal-closed">
-              <div class="notes-button">
-                <button class="btn_notes"><a href="#m3-o" id="modal-closed" class="link-notes">Teorico-Practico</a></button>
+                <a href="#m3-o" id="modal-closed" class="link-notes"><button class="btn_notes">Teorico-Practico</button></a>
               </div>
               <ul class="list-box__list">
                 <li>Materias</li>
@@ -96,7 +125,7 @@
           <div class="list-box">
             <a href="#m1-o" id="modal-closed">
               <div class="notes-button">
-                <button class="btn_notes"><a href="#m4-o" id="modal-closed" class="link-notes">Undefined</a></button>
+                <a href="#m4-o" id="modal-closed" class="link-notes"><button class="btn_notes">Undefined</button></a>
               </div>
               <ul class="list-box__list">
                 <li>Materias</li>
@@ -106,7 +135,7 @@
           <div class="list-box">
             <a href="#m1-o" id="modal-closed">
               <div class="notes-button">
-                <button class="btn_notes"><a href="#m5-o" id="modal-closed" class="link-notes">Undifined</a></button>
+                <a href="#m5-o" id="modal-closed" class="link-notes"><button class="btn_notes">Undifined</button></a>
               </div>
               <ul class="list-box__list">
                 <li style="font-we">Materias</li>
@@ -116,7 +145,7 @@
           <div class="list-box">
             <a href="#m1-o" id="modal-closed">
               <div class="notes-button">
-                <button class="btn_notes"><a href="#m6-o" id="modal-closed" class="link-notes">Undefined</a></button>
+                <a href="#m6-o" id="modal-closed" class="link-notes"><button class="btn_notes">Undefined</button></a>
               </div>
               <ul class="list-box__list">
                 <li>Materias</li>
@@ -132,42 +161,31 @@
       <div class="modal">
         <h1 class="modal__title">Ciencias Basicas</h1>
         <div>
-          <div class="card-container-1">
-            <div class="photo-container">
-              <div class="date">
-                <div class="day">16</div>
-                <div class="month">MAY</div>
+          
+          {% for activity in act%}
+            {%if activity.act_category == 'Ciencias basicas'%}
+              <div class="card-container-1">
+                <div class="photo-container">
+                  <div class="date">
+                    <div class="month">{{ activity.act_date_delivery|date:"Y-m-d" }}</div>
+                    {% comment %} <div class="month">{{ activity.act_name }}</div> {% endcomment %}
+                  </div>
+                  <div class="image"></div>
+                </div>
+                <div class="info-container">
+                  <div class="event-name">
+                    <h3>{{ activity.act_name }}</h3> <p class="c-t-basic"><span>{{ activity.act_priority }}</span></p>
+                  </div>
+                  <div class="event-location">
+                    <p>{{ activity.act_description }}</p>
+                    <p><span class="el-score">Score:</span>{{ activity.act_score }}</p>
+                  </div>
+                </div>
               </div>
-              <div class="image"></div>
-            </div>
-            <div class="info-container">
-              <div class="event-name">
-                Mason Day
-              </div>
-              <div class="event-location">
-                See headlining artist: Soulja Boy
-              </div>
-            </div>
-          </div>
-          <div class="card-container-1">
-            <div class="photo-container">
-              <div class="date">
-                <div class="day">22</div>
-                <div class="month">MAY</div>
-              </div>
-              <div class="image"></div>
-            </div>
-            <div class="info-container">
-              <div class="event-name">
-                De-Stress Fest
-              </div>
-              <div class="event-location">
-                De-stress before finals with puppies!
-              </div>
-            </div>
-          </div>
+            {% endif %}  
+          {% endfor %}  
         </div>    
-        <button class="modal__btn">Button &rarr;</button>
+
         <a href="#m1-c" class="link-2"></a>
       </div>
     </div>
