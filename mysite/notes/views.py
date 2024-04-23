@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.template import loader
 from .models import UserTable, Activities , Documents  
-# from django.contrib.message import message
-from django.db import IntegrityError
-from django.contrib.auth import authenticate, login
-from django.contrib.sessions.models import Session
 from notes.forms import DocumentsForm
+from django.db import IntegrityError
+#--------------------------------- not used libraries --------------------------------
+# from django.template import loader
+# from django.contrib.message import message
+# from django.contrib.auth import authenticate, login
+# from django.contrib.sessions.models import Session
 # from django.contrib.auth.forms import UserCreationForm --> create form for defaul
+#--------------------------------------------------------------------------------------
 
 def test(request):
     return render(request,'home_user/index.html')
@@ -35,15 +37,17 @@ def register(request):
            user = UserTable(user_name=username,user_email=email,user_university=university,user_carrer=carrer,user_graduated=graduation,user_password=password)
            user.save()
            print('success') 
-           messages.success(request,'Registro exitoso. Ahora puedes iniciar sesión.') 
+        #    messages.success(request,'Registro exitoso. Ahora puedes iniciar sesión.') 
            return render(request,'login/index.html') 
-       except IntegrityError as e:
-           error_message= str(e) 
-           messages.error(request,f'Error de integridad {error_message}') 
+       except IntegrityError:
+        #    error_message= str(e)
+           pass 
+        #    messages.error(request,f'Error de integridad {error_message}') 
     else:
-        messages.error(request,'Las contraseñas no coinciden.')
+        # messages.error(request,'Las contraseñas no coinciden.')
+        pass
 
-def login(request):
+def loguin(request):
     if request.method == 'POST':
        username = request.POST['email']
        password = request.POST['password']
@@ -54,7 +58,8 @@ def login(request):
           request.session['user_id'] = user.id
           request.session['username'] = username
           request.session.save()
-          return render(request,'home_user/activities.html',{ 'session_id':request.session.get('user_id', 'Invitado') })
+          act = Activities.objects.filter(act_user_id=request.session.get('user_id'))
+          return render(request,'home_user/activities.html',{ 'session_id':request.session.get('user_id', 'Invitado') , 'act':act})
        else:
           HttpResponse("No funciona")
     else:
@@ -76,11 +81,13 @@ def activities(request):
         try:
             activity = Activities(act_name=name,act_date_delivery=date,act_score=score,act_priority=priority,act_user_id=user_id,act_category=category,act_description=description)
             activity.save()
-            messages.success(request,'Registro exitoso.') 
-            return render(request,'home_user/activities.html') 
-        except IntegrityError as e:
-            error_message= str(e) 
-            messages.error(request,f'Error de integridad {error_message}')  
+            act = Activities.objects.filter(act_user_id=request.session.get('user_id'))
+            # return redirect("home_user/activities.html", act= acties)
+            return render(request,'home_user/activities.html',{'act':act}) 
+        except IntegrityError:
+            pass
+            # error_message= str(e) 
+            # messages.error(request,f'Error de integridad {error_message}')  
     else:
         #filter activities for user_id of session with filter
         activities=Activities.objects.filter(act_user_id=request.session.get('user_id'))           
