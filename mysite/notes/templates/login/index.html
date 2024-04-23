@@ -4,7 +4,8 @@
   <head>
     <title>Login</title>
     <link rel="stylesheet" href="{% static 'notes/login.css' %}"/>
-    <link rel="icon" href="https://fonts.gstatic.com/s/i/materialicons/heart/v18/24px.svg">
+    <link rel="icon" href="https://fonts.gstatic.com/s/i/materialicons/heart/v18/24px.svg">
+
     <link rel="icon" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   </head>
 
@@ -41,12 +42,6 @@
 {% csrf_token %}
       <img src="{% static 'notes/logo-app.png' %}" alt="logo app " width="100px">
 			<h1>Sign in</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			</div>
-			<span>or use your account</span>
 			<input type="email" placeholder="Email" name="email" />
 			<input type="password" placeholder="Password" name="password" />
 			<a href="#">Forgot your password?</a>

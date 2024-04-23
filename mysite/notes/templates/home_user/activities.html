@@ -13,7 +13,7 @@
             class="heading__img"
             src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/756881/laptop.svg"
           />
-          <h1 class="heading__title">Create Activitie</h1>
+          <h1 class="heading__title">Create Activities</h1>
           {% if messages %}
           <ul class="messages">
               {% for message in messages %}
@@ -90,7 +90,8 @@
                 <a href="#m1-o" id="modal-closed" class="link-notes"><button class="btn_notes">Ciencias basicas</button></a>
               </div>
               <ul class="list-box__list">
-                <li>Materias</li>
+                <li> <span style="font-weight: bold;font-size:19px;">Calculo 1</span></li>
+
               </div>
               {% comment %} {% for el in act %}
                 <p>{{ el.act_name }}</p>
@@ -106,7 +107,7 @@
                 <a href="#m2-o" id="modal-closed" class="link-notes"> <button class="btn_notes">Proyecto</button></a>
               </div>
               <ul class="list-box__list">
-                <li>Materias</li>
+                <li> <span style="font-weight: bold;font-size:19px;">Materias</span></li>
               </ul>
             </a>  
           </div>
@@ -116,7 +117,7 @@
                 <a href="#m3-o" id="modal-closed" class="link-notes"><button class="btn_notes">Teorico-Practico</button></a>
               </div>
               <ul class="list-box__list">
-                <li>Materias</li>
+                <li> <span style="font-weight: bold;font-size:19px;">Materias</span></li>
               </ul>
             </a>  
           </div>
@@ -128,7 +129,7 @@
                 <a href="#m4-o" id="modal-closed" class="link-notes"><button class="btn_notes">Undefined</button></a>
               </div>
               <ul class="list-box__list">
-                <li>Materias</li>
+                <li> <span style="font-weight: bold;font-size:19px;">Materias</span></li>
               </ul>
             </a>  
           </div>
@@ -138,7 +139,7 @@
                 <a href="#m5-o" id="modal-closed" class="link-notes"><button class="btn_notes">Undifined</button></a>
               </div>
               <ul class="list-box__list">
-                <li style="font-we">Materias</li>
+                <li> <span style="font-weight: bold;font-size:19px;">Materias</span></li>
               </ul>
             </a>  
           </div>
@@ -148,7 +149,7 @@
                 <a href="#m6-o" id="modal-closed" class="link-notes"><button class="btn_notes">Undefined</button></a>
               </div>
               <ul class="list-box__list">
-                <li>Materias</li>
+                <li> <span style="font-weight: bold;font-size:19px;">Materias</span></li>
               </ul>
             </a>  
           </div>
@@ -163,7 +164,7 @@
         <div>
           
           {% for activity in act%}
-            {%if activity.act_category == 'Ciencias basicas'%}
+            {% if activity.act_category == 'Ciencias basicas' %}
               <div class="card-container-1">
                 <div class="photo-container">
                   <div class="date">
@@ -180,7 +181,12 @@
                     <p>{{ activity.act_description }}</p>
                     <p><span class="el-score">Score:</span>{{ activity.act_score }}</p>
                   </div>
+                  <div class="buttons">
+                    <a href="#m4-o" id="modal-closed" class="link-notes"><button class="btn_notes_edit">Edit</button></a>
+                    <a href="#m4-o" id="modal-closed" class="link-notes"><button class="btn_notes_edit">Delete</button></a>
+                  </div>
                 </div>
+
               </div>
             {% endif %}  
           {% endfor %}  
@@ -189,89 +195,73 @@
         <a href="#m1-c" class="link-2"></a>
       </div>
     </div>
+
     <div class="modal-container" id="m2-o" >
       <div class="modal">
         <h1 class="modal__title">Proyecto</h1>
         <div>
-          <div class="card-container-1">
-            <div class="photo-container">
-              <div class="date">
-                <div class="day">16</div>
-                <div class="month">MAY</div>
+          {% for element in act%}
+            {% if element.act_category == 'Proyecto' %}
+              <div class="card-container-1">
+                <div class="photo-container">
+                  <div class="date">
+                    <div class="month">{{ element.act_date_delivery|date:"Y-m-d" }}</div>
+                    {% comment %} <div class="month">{{ activity.act_name }}</div> {% endcomment %}
+                  </div>
+                  <div class="image"></div>
+                </div>
+                <div class="info-container">
+                  <div class="event-name">
+                    <h3>{{ element.act_name }}</h3> <p class="c-t-basic"><span>{{ element.act_priority }}</span></p>
+                  </div>
+                  <div class="event-location">
+                    <p>{{ element.act_description }}</p>
+                    <p><span class="el-score">Score:</span>{{ element.act_score }}</p>
+                  </div>
+                  <div class="buttons">
+                    <a href="#m4-o" id="modal-closed" class="link-notes"><button class="btn_notes_edit">Edit</button></a>
+                    <a href="#m4-o" id="modal-closed" class="link-notes"><button class="btn_notes_edit">Delete</button></a>
+                  </div>
+                </div>
               </div>
-              <div class="image"></div>
-            </div>
-            <div class="info-container">
-              <div class="event-name">
-                Mason Day
-              </div>
-              <div class="event-location">
-                See headlining artist: Soulja Boy
-              </div>
-            </div>
-          </div>
-          <div class="card-container-1">
-            <div class="photo-container">
-              <div class="date">
-                <div class="day">22</div>
-                <div class="month">MAY</div>
-              </div>
-              <div class="image"></div>
-            </div>
-            <div class="info-container">
-              <div class="event-name">
-                De-Stress Fest
-              </div>
-              <div class="event-location">
-                De-stress before finals with puppies!
-              </div>
-            </div>
-          </div>
-        </div>    
-        <button class="modal__btn">Button &rarr;</button>
+            {% endif %}      
+          {% endfor %}  
+        </div>   
         <a href="#m1-c" class="link-2"></a>
       </div>
     </div>
+
     <div class="modal-container" id="m3-o" >
       <div class="modal">
         <h1 class="modal__title">Teorico-Practico</h1>
         <div>
-          <div class="card-container-1">
-            <div class="photo-container">
-              <div class="date">
-                <div class="day">16</div>
-                <div class="month">MAY</div>
+          {% for el in act %}
+            {% if el.act_category == 'Teorico-Practico' %}
+              <div class="card-container-1">
+                <div class="photo-container">
+                  <div class="date">
+                    <div class="month">{{ el.act_date_delivery|date:"Y-m-d" }}</div>
+                    {% comment %} <div class="month">{{ activity.act_name }}</div> {% endcomment %}
+                  </div>
+                  <div class="image"></div>
+                </div>
+                <div class="info-container">
+                  <div class="event-name">
+                    <h3>{{ el.act_name }}</h3> <p class="c-t-basic"><span>{{ el.act_priority }}</span></p>
+                  </div>
+                  <div class="event-location">
+                    <p>{{ el.act_description }}</p>
+                    <p><span class="el-score">Score:</span>{{ el.act_score }}</p>
+                  </div>
+                  <div class="buttons">
+                    <a href="#m4-o" id="modal-closed" class="link-notes"><button class="btn_notes_edit">Edit</button></a>
+                    <a href="#m4-o" id="modal-closed" class="link-notes"><button class="btn_notes_edit">Delete</button></a>
+                  </div>
+                </div>
               </div>
-              <div class="image"></div>
-            </div>
-            <div class="info-container">
-              <div class="event-name">
-                Mason Day
-              </div>
-              <div class="event-location">
-                See headlining artist: Soulja Boy
-              </div>
-            </div>
-          </div>
-          <div class="card-container-1">
-            <div class="photo-container">
-              <div class="date">
-                <div class="day">22</div>
-                <div class="month">MAY</div>
-              </div>
-              <div class="image"></div>
-            </div>
-            <div class="info-container">
-              <div class="event-name">
-                De-Stress Fest
-              </div>
-              <div class="event-location">
-                De-stress before finals with puppies!
-              </div>
-            </div>
-          </div>
+            {% endif %}  
+          {% endfor %}  
         </div>    
-        <button class="modal__btn">Button &rarr;</button>
         <a href="#m1-c" class="link-2"></a>
       </div>
     </div>

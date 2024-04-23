@@ -5,6 +5,7 @@
 }
 
 body {
+	font-weight: bold;
 	background: #f6f5f7;
 	display: flex;
 	justify-content: center;
