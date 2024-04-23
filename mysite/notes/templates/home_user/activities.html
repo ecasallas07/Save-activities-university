@@ -182,9 +182,37 @@
                     <p><span class="el-score">Score:</span>{{ activity.act_score }}</p>
                   </div>
                   <div class="buttons">
-                    <a href="#m4-o" id="modal-closed" class="link-notes"><button class="btn_notes_edit">Edit</button></a>
-                    <a href="#m4-o" id="modal-closed" class="link-notes"><button class="btn_notes_edit">Delete</button></a>
+                    <button class="btn_notes_edit" id="btn_notes_edit">Edit</button>
+                    <button class="btn_notes_edit">Delete</button>
+                  </div>  
+
+                  {% comment %} MODAL EDIT {% endcomment %}
+
+                  <div class="modal_edit" id="modal_edit">
+                    <div class="card">
+                      <h2>Edit Activitie</h2>
+                      <!-- FORMULAIRE -->
+                      <form method="POST" action="{% url 'notes:documents' %}" class="form">
+                        {% csrf_token %}
+                        <input type="text" name="act_name" maxlength="255" required="" id="id_docu_title"  value="{{activity.act_name}}">
+                        <select  name="act_category">
+                          <option {% if activity.act_category == 'Ciencias basicas' %} selected{% endif%} value="Ciencias basicas">Ciencias basicas</option>
+                          <option {% if activity.act_category == 'Proyecto' %} selected {% endif %} value="Proyecto">Proyecto</option>
+                          <option {% if activity.act_category == 'Teorico-Practico'%} selected {% endif%}  value="Teorico-Practico">Teorico-Practico</option>;
+                        </select>
+                        <input type="text" name="act_score" maxlength="255" required="" id="id_docu_title" value="{{activity.act_score}}">
+                        <select  name="act_priority">
+                          <option {% if activity.act_priority == 'Alta' %} selected{% endif%} value="Alta">Alta</option>
+                          <option {% if activity.act_priority == 'Media' %} selected {% endif %} value="Media">Media</option>
+                          <option {% if activity.act_priority == 'Baja'%} selected {% endif%}  value="Baja">Baja</option>;
+                        </select>
+                        <input type="date" name="docu_title" maxlength="255" required="" id="id_docu_title" value="{{ activity.act_date_delivery|date:"Y-m-d" }}">
+                        <textarea name="" cols="40" rows="10" maxlength="255" required="" id="id_docu_description">{{ activity.act_description }}</textarea>
+                        <button type="button" class="login_btn">Edit</button>
+                      </form>  
+                    <button class="close">&times;</button>
                   </div>
+
                 </div>
 
               </div>
@@ -402,4 +430,5 @@
 {% endblock %}
 {% block script %}
 <script src="{% static 'notes/home-user.js' %}"></script> 
+<script src="{% static 'notes/activities.js' %}"></script>
 {% endblock %}
