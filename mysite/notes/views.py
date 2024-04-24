@@ -105,3 +105,18 @@ def documents(request):
 
 def notes(request):
     return render(request,'home_user/notes.html')
+
+def edit_activities(request):
+    if request.method == 'POST':
+        name =request.POST['act_name']
+        date = request.POST['act_date_delivery']
+        score = request.POST['act_score']
+        priority = request.POST['act_priority']
+        user_id = request.session['user_id']
+        category = request.POST['act_category']
+        description = request.POST['act_description']
+        
+        Activities.objects.filter(pk=request.session.get('user_id')).update(act_name=name,act_date_delivery=date,act_score=score,act_priority=priority,act_user_id=user_id,act_category=category,act_description=description)
+        return render(request,'home_user/activities.html')
+    else:
+        return render(request,'home_user/activities.html')
