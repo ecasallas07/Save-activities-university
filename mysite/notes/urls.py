@@ -11,7 +11,6 @@ urlpatterns = [
     path("activities/",views.activities, name="activities"),
     path("documents/",views.documents, name="documents"),
     path("notes/",views.notes, name="notes"),
+    path("activities/update",views.edit_activities, name="activities_update"),
     
-
-
 ]
