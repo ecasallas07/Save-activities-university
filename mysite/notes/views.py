@@ -115,8 +115,15 @@ def edit_activities(request):
         user_id = request.session['user_id']
         category = request.POST['act_category']
         description = request.POST['act_description']
-        
+    
         Activities.objects.filter(pk=request.session.get('user_id')).update(act_name=name,act_date_delivery=date,act_score=score,act_priority=priority,act_user_id=user_id,act_category=category,act_description=description)
         return render(request,'home_user/activities.html')
     else:
         return render(request,'home_user/activities.html')
+
+def delete_activities(request,pk):
+    activity = Activities.objects.get(id=pk)
+    activity.delete()
+    act = Activities.objects.filter(act_user_id= request.session.get('user_id'))
+    return render(request,'home_user/activities.html',{'act':act})    
+    
