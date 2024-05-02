@@ -19,52 +19,25 @@
     </div>
   </div>
   <div class="container_docu">
-    <h2>Documents List</h2>
+    <h2>Saved Documents</h2>
     <ul class="file-list">
+      {% for element in document %}
       <li>
         <a href="#" target="_blank">
           <span class="thumb-nail"
             ><img
               src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/12/attachment_83090027.jpg?auto=format&q=60&fit=max&w=930"
           /></span>
-          <h3>Filename will come here</h3>
-          <i></i>
+          <h3>{{element.docu_title}}</h3>
+          <a>{{ element.docu_link}}</a>
+          {% if element.docu_file != '' %}
+            <p></p>
+          {% endif %}  
         </a>
       </li>
+      {% endfor %}
 
-      <li>
-        <a href="#" target="_blank">
-          <span class="thumb-nail"
-            ><img
-              src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/12/attachment_83090027.jpg?auto=format&q=60&fit=max&w=930"
-          /></span>
-          <h3>Filename will come here</h3>
-          <i></i>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" target="_blank">
-          <span class="thumb-nail"
-            ><img
-              src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/12/attachment_83090027.jpg?auto=format&q=60&fit=max&w=930"
-          /></span>
-          <h3>Filename will come here</h3>
-          <i></i>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" target="_blank">
-          <span class="thumb-nail"
-            ><img
-              src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/12/attachment_83090027.jpg?auto=format&q=60&fit=max&w=930"
-          /></span>
-          <h3>Filename will come here</h3>
-          <i></i>
-        </a>
-      </li>
-    </ul>
+   </ul>
   </div>
 </div>
 
