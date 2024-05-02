@@ -188,3 +188,31 @@
 .container_docu{
     font-weight: bold;
 }
+.btn_notes_edit {
+  --btn-color: rgb(124 45 18);
+  --btn-bg: rgb(252 211 77);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: whitesmoke;
+  color: black;
+  /* padding: 14px 22px;   */
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: system-ui;
+  border: 2px solid #4755d6;
+  transition: 100ms ease;
+  box-shadow: 5px 5px 0 0 #4755d6;
+  /* margin: 25px; */
+  width: 70px;
+  height: 17px;
+  text-align: left;
+}
+.btn_notes_edit a{
+  height: 10px;
+}

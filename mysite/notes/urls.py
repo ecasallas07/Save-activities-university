@@ -14,5 +14,6 @@ urlpatterns = [
     path("activities/update",views.edit_activities, name="activities_update"),
     path("verification/delete/<int:pk>",views.delete_activities,name="delete"),
     path("activities/delete/<int:pk>",views.delete_activities,name="delete_act"),
+    path("documents/delete/<int:pk>",views.delete_documents,name="delete_docu"),
     
 ]
