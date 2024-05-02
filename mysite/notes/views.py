@@ -98,10 +98,13 @@ def documents(request):
         form_docu = DocumentsForm(request.POST,request.FILES)
         if form_docu.is_valid():
             form_docu.save()
-            return redirect('home_user/documents')
+            document= Documents.objects.all() 
+            return redirect('home_user/documents',{'document':document})
     else:        
         form = DocumentsForm()
-        return render(request,'home_user/documents.html',{'form':form})
+        # raw() --> element for making queries as mysql
+        document = Documents.objects.all()
+        return render(request,'home_user/documents.html',{'form':form,'document':document})
 
 def notes(request):
     return render(request,'home_user/notes.html')
