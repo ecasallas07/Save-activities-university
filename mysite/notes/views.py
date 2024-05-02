@@ -97,9 +97,15 @@ def documents(request):
     if request.method == 'POST':
         form_docu = DocumentsForm(request.POST,request.FILES)
         if form_docu.is_valid():
+            print(form_docu.is_valid())
             form_docu.save()
-            document= Documents.objects.all() 
-            return redirect('home_user/documents',{'document':document})
+            form = DocumentsForm()
+            # document= Documents.objects.all 
+            return render(request,'home_user/documents.html',{'form':form})
+        else:
+            form = DocumentsForm()
+            return render(request,'home_user/documents.html',{'form': form})
+
     else:        
         form = DocumentsForm()
         # raw() --> element for making queries as mysql
@@ -129,4 +135,11 @@ def delete_activities(request,pk):
     activity.delete()
     act = Activities.objects.filter(act_user_id= request.session.get('user_id'))
     return render(request,'home_user/activities.html',{'act':act})    
+def delete_documents(request,pk):
+    docu = Documents.objects.get(id=pk)
+    docu.delete()
+    form = DocumentsForm()
+    document = Documents.objects.all()
+    return render(request,'home_user/documents.html',{'document':document, 'form':form})
+
     

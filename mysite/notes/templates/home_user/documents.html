@@ -7,17 +7,18 @@
     <div class="card">
       <h2>Save Documents</h2>
       <!-- FORMULAIRE -->
-      <form method="POST" action="{% url 'notes:documents' %}" class="form">
+      <form method="POST" action="{% url 'notes:documents' %}" class="form" enctype="multipart/form-data">
         {% csrf_token %}
         <p>Filename:</p>{{ form.docu_title }}
         <p>Description: </p> {{ form.docu_description }}
         <p>Link:</p>{{ form.docu_link }}
         <p>File:</p> {{ form.docu_file }}
         <p>Image:</p> {{ form.docu_image }}
-        <button type="button" class="login_btn">Save</button>
+        <input type="hidden" value="{{ request.session.user_id}" >
+        <button class="login_btn">Save</button>
       </form>
     </div>
-  </div>
+    </div>
   <div class="container_docu">
     <h2>Saved Documents</h2>
     <ul class="file-list">
@@ -26,14 +27,16 @@
         <a href="#" target="_blank">
           <span class="thumb-nail"
             ><img
-              src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/12/attachment_83090027.jpg?auto=format&q=60&fit=max&w=930"
+                 src="/{{ element.docu_image}}"
           /></span>
           <h3>{{element.docu_title}}</h3>
-          <a>{{ element.docu_link}}</a>
+          <a href="{{ element.docu_link }}">Link document</a>
           {% if element.docu_file != '' %}
-            <p></p>
+          <a href="{{element.docu_file.url}}">Download document</a>
           {% endif %}  
         </a>
+         <button class="btn_notes_edit"><a href="delete/{{element.id}}">Delete</button></a>
+
       </li>
       {% endfor %}
 
